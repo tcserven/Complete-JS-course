@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, previousRoll;
 
 init();
 
@@ -17,23 +17,34 @@ init();
 // document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
 // var x = document.querySelector('#score-0').textContent;
 
-
+// roll the dice
 document.querySelector('.btn-roll').addEventListener('click', function() {
 	
+
 	if (gamePlaying) {
+		console.log("previous roll " + previousRoll);
 		// generate a random num 1-6
 		var dice = Math.floor(Math.random() * 6 + 1);
+		console.log('current Roll ' + dice);
 
 		// display the result. make the image visible and display the correct img
 		var diceDOM = document.querySelector('.dice');
 		diceDOM.style.display = 'block';
 		diceDOM.src = 'dice-' + dice + '.png';
 
-		// update theround score IF the rolled number was not 1
+		if (previousRoll === dice) {
+			// next player
+			nextPlayer();
+		}
+
+
+		// update the round score IF the rolled number was not 1
 		if (dice !== 1) {
 			// add score
 			roundScore += dice;
 			document.querySelector('#current-' + activePlayer).textContent = roundScore;
+			previousRoll = dice;
+
 		} else {
 			// next player
 			nextPlayer();
@@ -70,6 +81,7 @@ function nextPlayer() {
 	// next player
 		activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
 		roundScore = 0;
+		previousRoll = 0;
 
 		document.getElementById('current-0').textContent = '0';
 		document.getElementById('current-1').textContent = '0';
@@ -91,6 +103,7 @@ function init() {
 	roundScore = 0;
 	activePlayer = 0;
 	gamePlaying = true;
+	previousRoll = 0;
 
 	document.querySelector('.dice').style.display = 'none';
 	document.getElementById('score-0').textContent = '0';
