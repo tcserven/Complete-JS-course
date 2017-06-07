@@ -141,6 +141,22 @@ i {
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
+.final-score {
+    top: 100px;
+    position: absolute;
+    width: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    font-family: Lato;
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 300;
+    padding: 10px;
+    text-align: center;
+}
+
 .dice {
     position: absolute;
     left: 50%;

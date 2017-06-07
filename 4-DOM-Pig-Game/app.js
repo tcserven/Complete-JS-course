@@ -22,10 +22,10 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
 
 	if (gamePlaying) {
-		console.log("previous roll " + lastDice);
+		// console.log("previous roll " + lastDice);
 		// generate a random num 1-6
 		var dice = Math.floor(Math.random() * 6 + 1);
-		console.log('current Roll ' + dice);
+		// console.log('current Roll ' + dice);
 
 		// display the result. make the image visible and display the correct img
 		var diceDOM = document.querySelector('.dice');
@@ -64,8 +64,19 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 		// update the UI
 		document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
+		var input = document.querySelector('.final-score').value;
+		var winningScore;
+
+		// Undefined, 0, null, or “” are COERCED to FALSE!!
+		// anything else is COERCED to true!
+		if (input) {
+			winningScore = input;
+		} else {
+			winningScore = 100;
+		}
+
 		// check if player won the game
-		if (scores[activePlayer] >= 20) {
+		if (scores[activePlayer] >= winningScore) {
 			document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
 			document.querySelector('.dice').style.display = 'none';
 			document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
