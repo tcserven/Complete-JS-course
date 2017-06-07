@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, gamePlaying, previousRoll;
+var scores, roundScore, activePlayer, gamePlaying, lastDice;
 
 init();
 
@@ -19,10 +19,10 @@ init();
 
 // roll the dice
 document.querySelector('.btn-roll').addEventListener('click', function() {
-	
+
 
 	if (gamePlaying) {
-		console.log("previous roll " + previousRoll);
+		console.log("previous roll " + lastDice);
 		// generate a random num 1-6
 		var dice = Math.floor(Math.random() * 6 + 1);
 		console.log('current Roll ' + dice);
@@ -32,23 +32,25 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 		diceDOM.style.display = 'block';
 		diceDOM.src = 'dice-' + dice + '.png';
 
-		if (previousRoll === dice) {
+		if (lastDice === dice && lastDice === 6) {
+			// player loses score
+			scores[activePlayer] = 0;
+			document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 			// next player
 			nextPlayer();
-		}
+		} else if (dice !== 1) {
 
-
-		// update the round score IF the rolled number was not 1
-		if (dice !== 1) {
 			// add score
 			roundScore += dice;
 			document.querySelector('#current-' + activePlayer).textContent = roundScore;
-			previousRoll = dice;
+			// lastDice = dice;
 
 		} else {
 			// next player
-			nextPlayer();
+			return nextPlayer();
 		}
+
+		lastDice = dice;
 	}
 });
 
@@ -71,6 +73,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 			gamePlaying = false;
 		} else {
 			// next player
+			// lastDice = 0;
 			nextPlayer();
 		}
 	}
@@ -81,7 +84,7 @@ function nextPlayer() {
 	// next player
 		activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
 		roundScore = 0;
-		previousRoll = 0;
+		lastDice = 0;
 
 		document.getElementById('current-0').textContent = '0';
 		document.getElementById('current-1').textContent = '0';
@@ -97,13 +100,11 @@ function nextPlayer() {
 
 document.querySelector('.btn-new').addEventListener('click', init);
 
-
 function init() {
 	scores = [0, 0];
 	roundScore = 0;
 	activePlayer = 0;
 	gamePlaying = true;
-	previousRoll = 0;
 
 	document.querySelector('.dice').style.display = 'none';
 	document.getElementById('score-0').textContent = '0';
