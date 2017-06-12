@@ -335,6 +335,7 @@
 		console.log('-----------------------');
 	};
 
+
 	// step 2
 	var q1 = new Question('What is my name?', ['Bill', 'Bob', 'Jo', 'Thomas'], 3);
 	var q2 = new Question('What the best food ever?', ['Pizza', 'Pop', 'Candy'], 0);
