@@ -113,7 +113,7 @@ var budgetController = (function() {
 				totalInc: data.totals.inc,
 				totalExp: data.totals.exp,
 				percentage: data.percentage
-			}
+			};
 		},
 
 		testing: function() {
@@ -181,6 +181,11 @@ var UIController = (function() {
 
 			fieldsArr[0].focus();
 		},
+
+		displayBudget: function(obj) {
+
+		},
+
 
 		getDOMstrings: function() {
 			return DOMstrings;
