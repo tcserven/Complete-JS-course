@@ -361,5 +361,113 @@
 // isFullAge6(1990, 1999, 1965, 2016, 1987);
 
 
+/////////////////////////////////////////////////
+// Default parameters
+
+//es5
+// function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+
+// 	lastName === undefined ? lastName = 'Smith' : lastName = lastName;
+// 	nationality === undefined ? nationality = 'American' : nationality = nationality;
+// 	// or we could just do that || thing. 	
+
+// 	this.firstName = firstName;
+// 	this.yearOfBirth = yearOfBirth;
+// 	this.lastName = lastName;
+// 	//this.lastName = lastName || 'Bob';
+// 	this.nationality = nationality;
+// }
+
+// var john = new SmithPerson('John', 1990);
+// var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
 
 
+//es6
+// function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'American') {
+// 	this.firstName = firstName;
+// 	this.yearOfBirth = yearOfBirth;
+// 	this.lastName = lastName;
+// 	this.nationality = nationality;
+// }
+// var john = new SmithPerson('John', 1990);
+// var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
+
+
+
+/////////////////////////////////////
+// Maps
+
+// const question = new Map();
+// question.set('question', 'whats the official name of my face');
+// question.set(1, 'es5');
+// question.set(2, 'es6');
+// question.set(3, 'es2015');
+// question.set(4, 'es7');
+// question.set('correct', 3);
+// question.set(true, 'Correct answer');
+// question.set(false, 'Wrong answer');
+
+// // console.log(question.get('question'));
+// // console.log(question.size);
+
+// if (question.has(4)) {
+// 	// question.delete(4);
+// }
+
+// // question.clear();
+
+// // question.forEach((value, key) => console.log(`This is ${key} and its set to ${value}`)); 
+
+// // question.entries returns all the key values
+// // we then use destructing in key, value to store each respective item in each variable 
+// // and a for of loop.  works for arrays too
+// for (let [key, value] of question.entries()) {
+// 	// console.log(`This is ${key} and its set to ${value}`);
+// 	if (typeof(key) === 'number') {
+// 		console.log(`Answer ${key}:  ${value}`);
+// 	}
+// }
+
+// const ans = parseInt(prompt('Write an answer'));
+// // could write an if else statement, but were not using an object!
+// // a bit confusing, but it makes sense if you break it down one step at a time
+// // taking advantage of the whole key values not only being strings
+// console.log(question.get(ans === question.get('correct')));
+
+
+//////////////////////////////////////////////////////////////////
+// Classes 
+// es5
+// var Person5 = function(name, yearOfBirth, job) {
+// 	this.name = name;
+// 	this.yearOfBirth = yearOfBirth;
+// 	this.job = job;
+// }
+
+// Person5.prototype.calculateAge = function() {
+// 	var age = new Date().getFullYear - this.year;
+// 	console.log(age);
+// }
+
+// var john5 = new Person5('John', 1995, 'teacher');
+
+// // es6
+// class Person6 {
+// 	constructor(name, yearOfBirth,job) {
+// 		this.name = name;
+// 		this.yearOfBirth = yearOfBirth;
+// 		this.job = job;
+// 	}
+
+// 	calculateAge() {
+// 		var age = new Date().getFullYear - this.year;
+// 		console.log(age);
+// 	}
+
+// 	static greeting() {
+// 		console.log('hey there');
+// 	}
+// }
+
+// var john6 = new Person6('John', 1995, 'teacher');
+// Person6.greeting();
