@@ -314,3 +314,52 @@
 
 ////////////////////////////
 // Rest parameters
+
+// es5
+// function isFullAge5() {
+// 	console.log(arguments);  //gives us an array-like structure. 
+// 	var argsArr = Array.prototype.slice.call(arguments);
+
+// 	argsArr.forEach(function(cur) {
+// 		console.log((2016 - cur) >= 18);
+// 	});
+// }
+// isFullAge5(1990, 1999, 1965);
+// isFullAge5(1990, 1999, 1965, 2016, 1987);
+
+// es6
+// function isFullAge6(...years) {
+// 	console.log(years);
+// 	years.forEach(cur => console.log((2016 - cur) >= 18));
+// }
+
+// isFullAge6(1990, 1999, 1965);
+// isFullAge6(1990, 1999, 1965, 2016, 1987);
+
+
+
+// es5 - adding in a parameter for the age limit
+// function isFullAge5(limit) {
+// 	console.log(arguments);  //gives us an array-like structure. 
+// 	var argsArr = Array.prototype.slice.call(arguments, 1);   //now at position 1 it will start to copy it
+// 	console.log(argsArr);
+
+// 	argsArr.forEach(function(cur) {
+// 		console.log((2016 - cur) >= limit);
+// 	});
+// }
+// isFullAge5(21, 1990, 1999, 1965);
+// isFullAge5(1990, 1999, 1965, 2016, 1987);
+
+// es6
+// function isFullAge6(limit, ...years) {   //much easier in es6
+// 	console.log(years);
+// 	years.forEach(cur => console.log((2016 - cur) >= limit));
+// }
+
+// isFullAge6(21, 1990, 1999, 1965);
+// isFullAge6(1990, 1999, 1965, 2016, 1987);
+
+
+
+
